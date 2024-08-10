@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fathy</groupId>
-	<artifactId>order-management-fulfillment  </artifactId>
+	<artifactId>order-management-fulfillment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>order-management-fulfillment  </name>
 	<description>Demo project for order management fulfillment using Spring Boot</description>
@@ -62,6 +62,11 @@
             <version>4.29.0</version>
         </dependency>
         -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>

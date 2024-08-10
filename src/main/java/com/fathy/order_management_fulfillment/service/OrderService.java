@@ -24,23 +24,25 @@ public class OrderService {
         this.productRepository = productRepository;
     }
 
-    private void validateOrder(Order order) {
+    void validateOrder(Order order) {
         Set<Product> products = order.getProducts();
 
-        if (products.isEmpty()) {
+        // Check if the order contains no products
+        if (products == null || products.isEmpty()) {
             throw new IllegalArgumentException("Order must contain at least one product.");
         }
 
+        // Validate each product in the order
         for (Product product : products) {
             if (product.getPrice() <= 0) {
-                throw new IllegalArgumentException("Product price must be greater than 0. not negative price!!!");
+                throw new IllegalArgumentException("Product price must be greater than 0. Negative or zero prices are not allowed.");
             }
-            if (product.getQuantity() <= 0) {
-                throw new IllegalArgumentException("You can't get order without products," +
-                        " Product quantity must be one or more.");
+            if (product.getQuantity() != 1) {
+                throw new IllegalArgumentException("Product quantity must be exactly one.");
             }
         }
     }
+
     public List<Order> saveAllOrders(List<Order> orders) {
         return orderRepository.saveAll(orders);
     }
