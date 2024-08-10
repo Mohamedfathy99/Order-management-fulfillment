@@ -43,7 +43,7 @@ The project follows a Domain-Driven Design (DDD) approach with the following pac
         - `spring.datasource.username=sa`
         - `spring.datasource.password=password`
         - `spring.jpa.database-platform=org.hibernate.dialect.H2Dialect`
-        - `spring.jpa.hibernate.ddl-auto=none`
+        - `spring.jpa.hibernate.ddl-auto=update`
 
 ## Testing
 Unit tests are written using JUnit and Mockito to ensure the functionality of the application. Test cases cover the core components, including the controller, service, and repository layers.
