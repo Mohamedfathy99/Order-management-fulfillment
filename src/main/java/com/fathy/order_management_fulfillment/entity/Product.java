@@ -1,5 +1,6 @@
 package com.fathy.order_management_fulfillment.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -12,14 +13,13 @@ public class Product {
 
     private String name;
 
-    @Column(nullable = false)
     private int quantity;
 
-    @Column(nullable = false)
     private double price;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
+    @JsonBackReference
     private Order order;
 
     public Product() {

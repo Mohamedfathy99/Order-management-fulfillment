@@ -7,7 +7,6 @@ import com.fathy.order_management_fulfillment.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -42,13 +41,15 @@ public class OrderService {
             }
         }
     }
-
-    @Transactional
-    public Order saveOrder(Order order){
-        validateOrder(order);
-        return orderRepository.save(order);
+    public List<Order> saveAllOrders(List<Order> orders) {
+        return orderRepository.saveAll(orders);
     }
 
+
+    public Order saveOrder(Order order) {
+        order.getProducts().forEach(product -> product.setOrder(order));
+        return orderRepository.save(order);
+    }
     @Async
     public void startOrderFulfillment(Order order){
         //  Order Fulfillment operation
